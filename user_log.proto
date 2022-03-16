@@ -1,0 +1,21 @@
+syntax = "proto3";
+package log;
+
+option go_package = "./";
+
+message Log {
+    message Res {
+        string name = 1;
+        string brand = 2;
+    }
+    
+    Res res = 2;
+}
+
+service ChatService {
+    rpc AddMessage(Log) returns (Log) {}
+}
+
+// service RouteGuide {
+//     rpc GetLogMessages() returns () {}
+// }
