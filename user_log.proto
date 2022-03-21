@@ -9,11 +9,30 @@ message Log {
         string brand = 2;
     }
     
-    Res res = 2;
+    Res Body = 2;
 }
 
 service ChatService {
     rpc AddMessage(Log) returns (Log) {}
+}
+
+message Chunk {
+    bytes Content = 1;
+}
+
+service GuploadService {
+    rpc MethodName (stream Chunk) returns (UploadStatus);
+}
+
+enum UploadStatusCode {
+    Unknown = 0;
+    Ok = 1;
+    Failed = 2;
+}
+
+message UploadStatus {
+    string Message = 1;
+    UploadStatusCode Code = 2;
 }
 
 // service RouteGuide {
